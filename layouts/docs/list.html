@@ -1,0 +1,49 @@
+{{ define "main" }}
+
+<section class="site-docs-header">
+  <div class="container">
+    Based on the <a href="https://www.thoughtworks.com/radar">pioneering work of ThoughtWorks</a>
+    {{ $counter := 1 }}
+    {{ $firstPost := index (first 1 .Pages) 0 }}
+    {{ $lastPost := index (last 1 .Pages) 0 }}
+    {{ range $i,$p := .Pages.ByWeight }}
+    <div class="row">
+      <div class="col-12">
+        {{ if eq $firstPost.Permalink .Permalink }}
+          <div class="site-docs-wrapper_first">
+        {{ else if eq $lastPost.Permalink .Permalink }}
+          <div class="site-docs-wrapper_last">
+        {{ else }}
+          <div class="site-docs-wrapper">
+        {{ end }}
+          {{if (modBool $i 2)}}
+            <div class="site-docs-company">
+              <h1>
+                {{ .Params.title }}
+              </h1>
+            </div>
+            <div class="site-docs-description">
+              <p>
+                {{ .Content }}
+              </p>
+            </div>
+            {{else}}
+            <div class="site-docs-description">
+              <p>
+                {{ .Content }}
+              </p>
+            </div>
+            <div class="site-docs-company">
+              <h1>
+                {{ .Params.title }}
+              </h1>
+            </div>
+            {{end}}
+          </div>
+        </div>
+      </div>
+      {{ $counter = add $counter 1 }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}

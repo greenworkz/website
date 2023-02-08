@@ -1,0 +1,62 @@
+{{ define "main" }}
+<section class="site-contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10">
+        <h1 class="site-contact-title">
+          {{ .Params.heading | safeHTML }}
+        </h1>
+      </div>
+    </div>
+  </div>
+
+  <section class="radar">
+    <div class="row radar-div">
+      <svg id="radar"></svg>
+    </div>
+  </section>
+
+  <script>
+    radar_visualization({
+      svg_id: "radar",
+      width: 1450,
+      height: 1000,
+      colors: {
+        background: "#fff",
+        grid: '#dddde0',
+        inactive: "#ddd"
+      },
+      title: "Greenworkz Sustainable Tech Radar",
+      date: "2023.1",
+      quadrants: [
+        {{ range .Params.quadrants }}
+          { name: {{ .name }} },
+        {{ end }}
+      ],
+      rings: [
+        {{ range .Params.rings }}
+          { name: {{ .name }}, color: {{ .color }} },
+        {{ end }}
+      ],
+      print_layout: true,
+      links_in_new_tabs: true,
+      // zoomed_quadrant: 0,
+      //ENTRIES
+      entries: [
+      {{ range .Pages }}
+            {
+              "quadrant": {{ .Params.quadrant }},
+              "ring": {{ .Params.ring }},
+              "label": {{ .Params.label }},
+              "active": {{ .Params.active }},
+              "link": {{ .Params.link }},
+              "moved": {{ .Params.moved }},
+            },
+        {{ end }}
+      ]
+      //ENTRIES
+    });
+  </script>
+
+</section>
+{{ end }}

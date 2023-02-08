@@ -1,0 +1,70 @@
+.site-hero{
+  position: relative;
+  height: 98vh;
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include desktop{
+    padding: 150px 0 200px;
+  }
+  @include mobile{
+    padding: 150px 0;
+  }
+  &-container{
+    margin-top: 10vh;
+
+    background-size: cover;
+    object-fit: cover;
+    object-position: right;
+    height: 80vh;
+  }
+  &-content{
+    h1{
+      margin-top: 100px;
+      @include desktop-lg{
+        font-size: 50px;
+      }
+      @include mobile{
+        font-size: 40px;
+      }
+    }
+    &-buttons{
+      margin: 0;
+      padding: 0;
+      li{
+        display: inline-block;
+        @include mobile{
+          display: block;
+        }
+        &:not(:last-child){
+          margin-right: 30px;
+          @include mobile{
+            margin-right: 0;
+            margin-bottom: 20px;
+          }
+        }
+        .btn{
+          font-weight: 600;
+          @include mobile{
+            width: 90%;
+            margin: 0 auto;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+  &-image{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &-scroll{
+    position: absolute;
+    left: 50%; bottom: 70px;
+    transform: translateX(-50%);
+  }
+}

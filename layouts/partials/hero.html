@@ -1,0 +1,46 @@
+{{ with .Site.Params.banner }}
+{{ if .enable }}
+{{ "<!-- Site Hero Start -->" | safeHTML }}
+<section class="site-hero" style="background-image: url('{{ .background_base_image }}');">
+  <div class="site-hero-container" style="background-image: url('{{ .background_image }}');">
+    <div class="row mb-4">
+      <div class="col-lg-10 mx-auto">
+        <div class="site-hero-content text-center">
+          <h1>
+            {{ .heading }}
+          </h1>
+          <h6>{{ .tagline }}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-4" style="margin-top:35vh;">
+      <div class="col-lg-10 mx-auto">
+        <div class="site-hero-content text-center">
+          <ul class="site-hero-content-buttons">
+            <li>
+              <a href="{{ .primary_button_url | absURL }}" class="btn btn-secondary">
+                <span class="btn-area">
+                  <span data-text="{{ .primary_button }}">
+                    {{ .primary_button }}
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ .secondary_button_url | absURL }}" class="btn btn-primary">
+                <span class="btn-area">
+                  <span data-text="{{ .secondary_button }}">
+                    {{ .secondary_button }}
+                  </span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ "<!-- Site Hero End -->" | safeHTML }}
+{{ end }}
+{{ end }}
